@@ -1,0 +1,329 @@
+\documentclass[landscape,final,archE1,fontscale=0.32]{baposter}
+
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage{rotating}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+\usepackage{palatino}
+\usepackage{booktabs, multicol, multirow}
+
+\usepackage[margin=1em]{caption}
+% package I added
+\usepackage{sidecap}
+\usepackage{floatrow}
+\usepackage{wrapfig}
+
+
+\bibliographystyle{plain}
+
+\graphicspath{{images/}{../images/}}
+\usetikzlibrary{calc}
+
+\newcommand{\SET}[1]  {\ensuremath{\mathcal{#1}}}
+\newcommand{\MAT}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand{\VEC}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand{\Video}{\SET{V}}
+\newcommand{\video}{\VEC{f}}
+\newcommand{\track}{x}
+\newcommand{\Track}{\SET T}
+\newcommand{\LMs}{\SET L}
+\newcommand{\lm}{l}
+\newcommand{\PosE}{\SET P}
+\newcommand{\posE}{\VEC p}
+\newcommand{\negE}{\VEC n}
+\newcommand{\NegE}{\SET N}
+\newcommand{\Occluded}{\SET O}
+\newcommand{\occluded}{o}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Some math symbols used in the text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Multicol Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\columnsep}{1.5em}
+\setlength{\columnseprule}{0mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Save space in lists. Use this after the opening of the list
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\compresslist}{%
+\setlength{\itemsep}{1pt}%
+\setlength{\parskip}{0pt}%
+\setlength{\parsep}{0pt}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Here starts the poster
+%%%---------------------------------------------------------------------------
+%%% Format it to your taste with the options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define some colors
+
+\definecolor{lightblue}{rgb}{0.145,0.6666,1}
+
+\hyphenation{resolution occlusions}
+%%
+\begin{poster}%
+  % Poster Options
+  {
+  % Show grid to help with alignment
+  grid=false,
+  columns=3,
+  % Column spacing
+  colspacing=1.6em,
+  % Color style
+  bgColorOne=white,
+  bgColorTwo=white,
+  borderColor=lightblue,
+  headerColorOne=black,
+  headerColorTwo=lightblue,
+  headerFontColor=white,
+  boxColorOne=white,
+  boxColorTwo=lightblue,
+  % Format of textbox
+  textborder=rectangle,
+  % Format of text header
+  eyecatcher=true,
+  headerborder=closed,
+  headerheight=0.12\textheight,
+%  textfont=\sc, An example of changing the text font
+  headershape=roundedright,
+  headershade=shadelr,
+  headerfont=\Large\bf, %Sans Serif
+  textfont={\setlength{\parindent}{1.5em}},
+  boxshade=plain,
+%  background=shade-tb,
+  background=plain,
+  linewidth=2pt
+  }
+  % ICSI logo
+  {\includegraphics[height=7.5em]{images/ICSI_color}}
+  % Title
+  {\bf{Parallelization of Neural Network Training using \\Model Averaging and Butterfly Mixing}}
+  % Authors
+  {Hang Su$^1$$^,$$^2$, Haoyu Chen$^2$\\
+  $^1$ International Computer Science Institute, CA, USA ~~~ $^2$ Dept. of EECS, UC Berkeley, CA, USA }
+  % University logo
+  {% The makebox allows the title to flow into the logo, this is a hack because of the L shaped logo.
+    \includegraphics[height=7.5em]{images/ucbseal}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Now define the boxes that make up the poster
+%%%---------------------------------------------------------------------------
+%%% Each box has a name and can be placed absolutely or relatively.
+%%% The only inconvenience is that you can only specify a relative position
+%%% towards an already declared box. So if you have a box attached to the
+%%% bottom, one to the top and a third one which should be in between, you
+%%% have to specify the top and bottom boxes before you specify the middle
+%%% box.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    % A coloured circle useful as a bullet with an adjustably strong filling
+    \newcommand{\colouredcircle}{%
+      \tikz{\useasboundingbox (-0.2em,-0.32em) rectangle(0.2em,0.32em); \draw[draw=black,fill=lightblue,line width=0.03em] (0,0) circle(0.18em);}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Goal}{name=goal,column=0,row=0}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\setlength \itemsep{0.2em}
+  \item Distributed neural network training using multiple GPUs.
+  \item Model average for distributed network training.
+  \item Apply different network communication strategies (all-reduce, butterfly and ring).
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Background}{name=background,column=0,below=goal}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Condition}
+\begin{itemize}
+\setlength \itemsep{0.2em}
+\item Large scale continuous time automatic speech recognition task.
+\item Deep Neural Network with fully connected layers and thousands of hidden nodes.
+\item Multiple GPUs available on different computing nodes.
+\item Data communication among the nodes are bottleneck for distributed training.
+\end{itemize}
+
+\subsection*{Approaches}
+\begin{itemize}
+\setlength \itemsep{0.2em}
+\item Data parallelism -- train neural networks locally using partitioned data (GPU based).
+\item Average model parameters among computing nodes every few minibatches (OpenMPI based).
+\item Apply butterfly / ring mixing network communication strategy to reduce data communication.
+\item Special training algorithm (natural gradient SGD) for better covergence rate.
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Setup}{name=setup,column=0,above=bottom,below=background}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\setlength \itemsep{0.2em}
+\item OpenMPI for data communicate between nodes.
+\item GPU for local neural network training (CUDA M1060 * 16)
+\end{itemize}
+\begin{center}
+\includegraphics[width=0.45\linewidth]{framework.jpg}
+\end{center}
+}
+%%%%%%%%%%%%%%%%%%%%%
+%\headerbox{}{name=setup2, column = 1, row = 0}{
+
+%The figure for the system's framework. 
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%  \vspace{-30pt}
+%  \begin{center}
+%    \includegraphics[width=1.0\textwidth]{framework.jpg}
+%  \end{center}
+%  \vspace{-20pt}
+  
+%  \vspace{-10pt}
+%\end{wrapfigure}
+%When we plan to communicate the parameters, we need to pass the message from GPU to CPU, and send message from one CPU to another CPU by OpenMPI. 
+
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Parallelization Strategy}{name=strategy,column=1,row=0}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{multicols}{2}
+\subsection*{All-reduce network}
+After every $n$ local updates, all the nodes reduce their parameter together (average), 
+and broadcast the parameter back to all the nodes. This requires high communication
+bandwidth.
+
+\vspace{-0.2cm}
+
+\subsection*{Butterfly-mixing}
+In Butterfly-mixing strategy, one node only communicates with one other node, averaging the 
+recieved model with its own model. After $log(nodeSize)$ communication, the information 
+is fully communicated.
+
+\vspace{-0.2cm}
+
+\subsection*{Ring network}
+In ring network, each node sends its parameter to its right neighbor and receive parameters 
+from its left neighbor. After $nodeSize$ communication, the information is fully communicated.
+This method benefits from the locality of computing nodes.
+
+\begin{center}
+  \includegraphics[width=0.40\textwidth]{allreduce.jpg}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{butterfly.jpg}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{ring.jpg}
+\end{center}
+\end{multicols}
+
+}
+
+\headerbox{Natural Gradient SGD}{name=sgd,column=1,below=strategy, above=bottom}{
+\begin{itemize}
+\setlength \itemsep{0.2em}
+\item Take steps along the gradient of a Riemannian parameter surface.
+\item Use inverse fisher matrix $E_t$ as learning-rate matrix.
+\item $\alpha$ denotes original learning rate, $g_t$ denotes plain gradient. Update
+parameters using:
+\end{itemize}
+\begin{equation}
+\theta_{t+1} = \theta_{t} + \alpha_t E_t g_t
+\end{equation}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Experiments}{name=experiments,column=2,row=0}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Convergence Status}
+% a graph of objective function vs iterations
+% natural gradient vs normal gradient 
+\begin{center}
+  \captionof{table}{Convergence status on CV set}
+  \begin{tabular}{c|c|c|c|c|c|c}
+    \hline
+           \multicolumn{2}{c|}{Nodes}         & 1    & 2    & 4    & 8    & 16 \\
+    \hline
+\multirow{2}{*}{Allreduce} &    Obj (loss)    & 1.43 & 1.57 & 1.45 & 1.45 & 1.48\\
+                           &    Frame Acc(\%) & 59.7 & 59.3 & 60.2 & 59.9 & 58.5\\
+    \hline
+\multirow{2}{*}{Butterfly} &    Obj (loss)    & --   & --   & 1.47 & 1.52 & 1.70\\
+                           &    Frame Acc(\%) & --   & --   & 60.0 & 58.4 & 54.7 \\
+    \hline
+\multirow{2}{*}{Ring}      &    Obj (loss)    & --   & --   & 1.47 & 1.62 & 1.96\\
+                           &    Frame Acc(\%) & --   & --   & 59.8 & 56.2 & 50.7 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection*{Scaling factor}
+\begin{center}
+  \captionof{table}{Speedup and scaling factor}
+  \begin{tabular}{c|c|c|c|c|c|c}
+    \hline
+           \multicolumn{2}{c|}{Nodes}   & 1    & 2    & 4    & 8    & 16 \\
+    \hline
+\multirow{2}{*}{Allreduce} &    Time    & 6.59 & 3.39 & 1.90 & 1.01 & 0.700\\
+                           &    speedup & --   & 1.94 & 3.47 & 6.52 & 9.41 \\
+    \hline
+\multirow{2}{*}{Butterfly} &    Time    & --   & --   & 1.83 & 1.00 & 0.582\\
+                           &    speedup & --   & --   & 3.60 & 6.59 & 11.32\\
+    \hline
+\multirow{2}{*}{Ring}      &    Time    & --   & --   & 1.84 & 1.01 & 0.517\\
+                           &    speedup & --   & --   & 3.58 & 6.52 & 12.75\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection*{Recognition Results}
+\begin{center}
+  \captionof{table}{Word error rate on different setup}
+  \begin{tabular}{c|c|c|c|c|c}
+    \hline
+    Nodes       & 1    & 2     & 4    & 8    & 16 \\
+    \hline
+    allreduce   & 18.4 & 17.9  & 18.3 & 18.3 & 18.7 \\
+    butterfly   & --   & --    & 18.5 & 18.7 & 20.6 \\
+    ring        & --   & --    & 18.5 & 19.6 & 22.1\\
+    \hline
+  \end{tabular}
+\end{center}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Conclusion}{name=conclusion,column=2,below=experiments,above=bottom}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\setlength \itemsep{0.2em}
+\item Neural network training can be efficiently speed up by using model averaging techniques.
+\item Natural gradient method contributes to the convergence rate in model averaging setup.
+\item Butterfly-mixing and ring reduction can reduce communication time in a further step.
+\item Training using Butterfly-mixing and ring reduction does not converge well as the number of jobs goes up to 16.
+\end{itemize}
+}
+
+\end{poster}
+
+\end{document}
