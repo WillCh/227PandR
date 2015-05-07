@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+
+\bibitem{scanzio2010parallel}
+Stefano Scanzio, Sandro Cumani, Roberto Gemello, Franco Mana, and Pietro
+  Laface,
+\newblock ``Parallel implementation of artificial neural network training,''
+\newblock in {\em Acoustics Speech and Signal Processing (ICASSP), 2010 IEEE
+  International Conference on}. IEEE, 2010, pp. 4902--4905.
+
+\bibitem{vesely2010parallel}
+Karel Vesel{\`y}, Luk{\'a}{\v{s}} Burget, and Franti{\v{s}}ek Gr{\'e}zl,
+\newblock ``Parallel training of neural networks for speech recognition,''
+\newblock in {\em Text, Speech and Dialogue}. Springer, 2010, pp. 439--446.
+
+\bibitem{seide2014parallelizability}
+Frank Seide, Hao Fu, Jasha Droppo, Gang Li, and Dong Yu,
+\newblock ``On parallelizability of stochastic gradient descent for speech
+  dnns,''
+\newblock in {\em Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE
+  International Conference on}. IEEE, 2014, pp. 235--239.
+
+\bibitem{seide20141}
+Frank Seide, Hao Fu, Jasha Droppo, Gang Li, and Dong Yu,
+\newblock ``1-bit stochastic gradient descent and its application to
+  data-parallel distributed training of speech dnns,''
+\newblock in {\em Fifteenth Annual Conference of the International Speech
+  Communication Association}, 2014.
+
+\bibitem{dean2012large}
+Jeffrey Dean, Greg Corrado, Rajat Monga, Kai Chen, Matthieu Devin, Mark Mao,
+  Andrew Senior, Paul Tucker, Ke~Yang, Quoc~V Le, et~al.,
+\newblock ``Large scale distributed deep networks,''
+\newblock in {\em Advances in Neural Information Processing Systems}, 2012, pp.
+  1223--1231.
+
+\bibitem{zhang2013asynchronous}
+Shanshan Zhang, Ce~Zhang, Zhao You, Rong Zheng, and Bo~Xu,
+\newblock ``Asynchronous stochastic gradient descent for dnn training,''
+\newblock in {\em Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}. IEEE, 2013, pp. 6660--6663.
+
+\bibitem{chen2012pipelined}
+Xie Chen, Adam Eversole, Gang Li, Dong Yu, and Frank Seide,
+\newblock ``Pipelined back-propagation for context-dependent deep neural
+  networks.,''
+\newblock in {\em INTERSPEECH}, 2012.
+
+\bibitem{coates2013deep}
+Adam Coates, Brody Huval, Tao Wang, David Wu, Bryan Catanzaro, and Ng~Andrew,
+\newblock ``Deep learning with cots hpc systems,''
+\newblock in {\em Proceedings of The 30th International Conference on Machine
+  Learning}, 2013, pp. 1337--1345.
+
+\bibitem{zhang2014improving}
+Xiaohui Zhang, Jan Trmal, Daniel Povey, and Sanjeev Khudanpur,
+\newblock ``Improving deep neural network acoustic models using generalized
+  maxout networks,''
+\newblock in {\em Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE
+  International Conference on}. IEEE, 2014, pp. 215--219.
+
+\bibitem{povey2014parallel}
+Daniel Povey, Xiaohui Zhang, and Sanjeev Khudanpur,
+\newblock ``Parallel training of deep neural networks with natural gradient and
+  parameter averaging,''
+\newblock {\em arXiv preprint arXiv:1410.7455}, 2014.
+
+\bibitem{zhao2013butterfly}
+Huasha Zhao and John Canny,
+\newblock ``Butterfly mixing: Accelerating incremental-update algorithms on
+  clusters,''
+\newblock in {\em SIAM Conf. on Data Mining}. SIAM, 2013.
+
+\end{thebibliography}
