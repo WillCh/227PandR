@@ -3,36 +3,38 @@
 \citation{vesely2010parallel}
 \citation{seide2014parallelizability}
 \citation{seide20141}
-\citation{dean2012large}
-\citation{zhang2013asynchronous}
-\citation{chen2012pipelined}
-\citation{coates2013deep}
-\citation{zhang2014improving}
-\citation{povey2014parallel}
 \citation{zhao2013butterfly}
-\bibstyle{IEEEbib}
-\bibdata{paper}
 \@writefile{toc}{\contentsline {section}{\numberline {1} Introduction}{1}}
 \newlabel{sec:intro}{{1}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2} Data parallelization and Model Averging}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3} Different Reduce Strategies}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1} Butterfly Mixing}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2} Ring \& Hopping Ring Reduce}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2} Neural network setup}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3} Data parallelization and Model Averging}{1}}
+\citation{zhao2013butterfly}
+\citation{parallelDistCom}
+\citation{parallelDistCom}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces network structure}}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4} Convergence Analysis}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5} Different Reduce Strategies}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1} All-reduce}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2} Butterfly Mixing}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces All-reduce network}}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Butterfly mixing network.}}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {6} Experimental Results}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1} Experiment setup}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2} Fixed the training data size}{3}}
+\bibstyle{IEEEbib}
+\bibdata{paper}
 \bibcite{scanzio2010parallel}{1}
 \bibcite{vesely2010parallel}{2}
 \bibcite{seide2014parallelizability}{3}
 \bibcite{seide20141}{4}
-\bibcite{dean2012large}{5}
-\bibcite{zhang2013asynchronous}{6}
-\bibcite{chen2012pipelined}{7}
-\bibcite{coates2013deep}{8}
-\bibcite{zhang2014improving}{9}
-\bibcite{povey2014parallel}{10}
-\bibcite{zhao2013butterfly}{11}
-\@writefile{toc}{\contentsline {section}{\numberline {4} Experimental Results}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1} Reduce Frequency}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2} Reduce type}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3} Scaling factor}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5} Conclusion}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {6} Acknowledgements}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {7} References}{2}}
+\bibcite{zhao2013butterfly}{5}
+\bibcite{parallelDistCom}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3} Fixed the number of iteration}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {7} Conclusion}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {8} References}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces fixed training data size, $n=4$}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces fixed training data size, $n=8$}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces fixed training data size, $n=16$}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Fix iteration number, $n = 4$}}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Fix iteration number, $n = 8$}}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Fix iteration number, $n = 16$}}{6}}
